@@ -18,6 +18,7 @@ library(dplyr)
 library(plyr)
 library(reshape2)
 
+
 ## 1. Merges the training and the test sets to create one data set.
 
 xTest <- read.table("./UCI HAR Dataset/test/X_test.txt")
