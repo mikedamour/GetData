@@ -63,22 +63,14 @@ humActCore$Activity <- actLabs[humActCore$Activity, "V2"]
 
 ## 4. Appropriately labels the data set with descriptive variable names. 
 
-##      Already done with column names above to help with the extract process.
-
-##      If header row is required for universality, below code duplicates column
-##      names into header row, but complicates read code for peer review. Below code
-##      1.  Changes Activity column to character to retain names
-##      2.  rbinds colnames, which coerces remainder to character for universality.
-##      Code is skipped here as column names meet tidy data and assignment reqs.
-
-##      humActTidy <- mutate(humActCore, Activity = as.character(Activity))
-##      humActTidy <- rbind(colnames(humActTidy1), humActTidy1)
+##  Already done with column names above to help with the extract process.
 
 humActTidy <- humActCore    ## Just use core data with column names, no colnames row.
 
 ##  Complete first tidy data set saved for posterity :)
 write.csv(humActTidy, "./humActTidy.txt", row.names = FALSE)
 
+##  Not required for GetData assignment, just saving.
 ##  Command to read file, restore Activity to factor from character
 humActTidyChk <- read.csv("./humActTidy.txt", as.is = TRUE)
 humActTidyChk <- mutate(humActTidyChk, Activity = as.factor(Activity))
@@ -88,7 +80,7 @@ humActTidyChk <- mutate(humActTidyChk, Activity = as.factor(Activity))
 ##    for each activity and each subject. 
 
 ##  Assuming "each activity and each subject" means sort by both in same table,
-##  create and save Subject & Activity Means table below.
+##  create and save Subject & Activity Means table.
 humActMelt <- melt(humActCore, id = c("Subject", "Activity"),
                    measure.vars = c(colnames(humActCore[ , 1:79])))
 humSubjActMean <- dcast(humActMelt, Subject + Activity ~ variable, mean)
@@ -102,8 +94,8 @@ write.csv(humSubjActMean, "./humSubjActMean.txt", row.names = FALSE)
 ##  Peer reviewer's command to read file, restore Activity to factor from character
 humSAMChk <- read.csv("./humSubjActMean.txt", as.is = TRUE)
 humSAMChk <- mutate(humSAMChk, Activity = as.factor(Activity))
-        ## humSubjActMean and humSAMChk will not be identical because reading 
-        ## replaces "-" in column names with "."
+        ## humSubjActMean and humSAMChk will not run identical command because reading 
+        ## replaces "-" in column names with "." but data is identical.
 
 
 
