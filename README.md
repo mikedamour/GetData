@@ -1,3 +1,4 @@
+
 ---
 title: "README for Course Project Getting and Cleaning Data"
 author: "Michael R. D'Amour"
@@ -41,3 +42,5 @@ This file provides help in reproducing the course project submission generated b
         feat <- read.table("./UCI HAR Dataset/features.txt")
         
     with the other similar files following the same pattern.
+
+
